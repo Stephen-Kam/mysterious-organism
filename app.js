@@ -85,25 +85,8 @@ for (let i = 0; i < 30; i++) {
   pAequor.push(pAequorFactory(i, mockUpStrand()));
 }
 
-console.log(pAequor);
-
-
-// Validation
-const specimenOne = pAequorFactory(1001, mockUpStrand());
-const specimenTwo = pAequorFactory(2001, mockUpStrand());
-
-console.log(specimenOne);
-console.log(specimenTwo);
-
-specimenOne.mutate();
-console.log(specimenOne);
-
-specimenOne.compareDNA(specimenTwo);
-console.log(specimenOne.willLikelySurvive());
-
-
 // Extra Credit
-
+const specimenOne = pAequorFactory(1001, mockUpStrand());
 console.log(specimenOne.complementStrand());
 
 const findMostRelated = (arr) => {
@@ -126,4 +109,17 @@ const findMostRelated = (arr) => {
 console.log(findMostRelated(pAequor));
 
 
+// Validation
+// const specimenOne = pAequorFactory(1001, mockUpStrand());
+// const specimenTwo = pAequorFactory(2001, mockUpStrand());
 
+// console.log(specimenOne);
+// console.log(specimenTwo);
+
+// specimenOne.mutate();
+// console.log(specimenOne);
+
+// specimenOne.compareDNA(specimenTwo);
+// console.log(specimenOne.willLikelySurvive());
+
+// console.log(pAequor);
