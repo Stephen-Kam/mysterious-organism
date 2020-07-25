@@ -22,17 +22,14 @@ const pAequorFactory = (specimenNum, dna) => {
     specimenNum,
     dna,
     mutate() {
-      const randomIndex = Math.floor(Math.random() * 15);
-      const dnaBases1 = ['T', 'C', 'G'];
-      const dnaBases2 = ['A', 'C', 'G'];
-      const dnaBases3 = ['A', 'T', 'G'];
-      const dnaBases4 = ['A', 'T', 'C'];
-      switch (this.dna[randomIndex]) {
-        case 'A': return this.dna.splice(randomIndex, 1, dnaBases1[Math.floor(Math.random() * 3)]);
-        case 'T': return this.dna.splice(randomIndex, 1, dnaBases2[Math.floor(Math.random() * 3)]);
-        case 'C': return this.dna.splice(randomIndex, 1, dnaBases3[Math.floor(Math.random() * 3)]);
-        case 'G': return this.dna.splice(randomIndex, 1, dnaBases4[Math.floor(Math.random() * 3)]);
+      const randomIndex = Math.floor(Math.random() * 15)
+      const randomDNA = this.dna[randomIndex];
+      let targetDNA = randomDNA;
+      const dnaBases = ['A', 'T', 'C', 'G'];
+      while (randomDNA === targetDNA) {
+        targetDNA = dnaBases[Math.floor(Math.random() * 4)]
       }
+      return dna.splice(randomIndex, 1, targetDNA);
     },
     compareDNA(obj) {
       const dna1 = this.dna;
@@ -56,25 +53,12 @@ const pAequorFactory = (specimenNum, dna) => {
       } else return false;
     },
     complementStrand() {
-      const complimentArray = this.dna;
-      console.log(complimentArray);
-      for (let i = 0; i < complimentArray.length; i++) {
-        switch (complimentArray[i]) {
-          case 'A':
-            complimentArray.splice(i, 1, 'T');
-            break;
-          case 'T':
-            complimentArray.splice(i, 1, 'A');
-            break;
-          case 'C':
-            complimentArray.splice(i, 1, 'G');
-            break;
-          case 'G':
-            complimentArray.splice(i, 1, 'C');
-            break;
-        }
-      }
-      return complimentArray;
+      return this.dna.map(strand => {
+        if (strand === 'A') return 'T';
+        if (strand === 'T') return 'A';
+        if (strand === 'C') return 'G';
+        if (strand === 'G') return 'C';
+      });
     }
   }
 };
@@ -87,6 +71,7 @@ for (let i = 0; i < 30; i++) {
 
 // Extra Credit
 const specimenOne = pAequorFactory(1001, mockUpStrand());
+console.log(specimenOne.dna);
 console.log(specimenOne.complementStrand());
 
 const findMostRelated = (arr) => {
